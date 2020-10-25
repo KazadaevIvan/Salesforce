@@ -1,9 +1,9 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import utils.Waiter;
 
 abstract public class BasePage {
-
     WebDriver driver;
     Waiter wait;
 
