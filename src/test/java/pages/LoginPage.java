@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
-
     public final static By USERNAME = By.id("username");
     public final static By PASSWORD = By.id("password");
     public final static By LOGIN_BUTTON = By.id("Login");
@@ -29,10 +28,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public HomePage login(String userName, String password) {
+    public LoginPage login(String userName, String password) {
         driver.findElement(USERNAME).sendKeys(userName);
         driver.findElement(PASSWORD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
-        return new HomePage(driver);
+        return this;
     }
 }
