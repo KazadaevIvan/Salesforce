@@ -1,64 +1,39 @@
 package tests;
 
+import models.Contact;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-
 public class CreateNewContactTest extends BaseTest {
-
-    String accountName = "Account for testing";
+    Contact contact;
 
     @BeforeMethod
     public void login() {
         loginPage
                 .openPage()
                 .isPageOpened()
-                .login("", "");
-        homePage
-                .isPageOpened();
-        tab
-                .openTab("Accounts")
-                .isTabOpened("Accounts")
-                .clickCreateNew();
-        modal
-                .isModalOpened("Accounts")
-                .inputWithSearchSendKeys("Account Name", accountName)
-                .submitForm();
-        homePage
-                .isPageOpened();
-        tab
-                .openTab("Accounts")
-                .isTabOpened("Accounts");
-        assertEquals(tab.getFirstName(), accountName, "Account name should be '" +
-                accountName + "'");
+                .login("i.kazadaev-wyla@force.com", "skater9hater");
+        contact = new Contact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
+                "Account", "title", "department", "email@mail.com", "123",
+                "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
+                "220140", "Belarus");
     }
 
     @Test
     public void newContactShouldBeCreated() {
-        homePage
-                .isPageOpened();
-        tab
-                .openTab("Contacts")
-                .isTabOpened("Contacts")
-                .clickCreateNew();
-
-        String lastName = "Ivanov";
-
-        modal
-                .isModalOpened("Contacts")
-                .inputSendKeys("Phone", "124246")
-                .selectOption("Salutation", "Mr.")
-                .inputSendKeys("Last Name", lastName)
-                .inputWithSearchSendKeys("Account Name", accountName)
-                .inputWithSearchChooseOption(accountName)
-                .submitForm();
-        homePage
-                .isPageOpened();
-        tab
-                .openTab("Contacts")
-                .isTabOpened("Contacts");
-        assertEquals(tab.getFirstName(), lastName, "Account name should be '" +
-                lastName + "'");
+        contactListPage
+                .openPage()
+                .isPageOpened()
+                .clickNew();
+        newContactModal
+                .isPageOpened()
+                .create(contact)
+                .clickSave();
+        contactDetailPage
+                .isPageOpened()
+                .validateContact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
+                        "Account", "title", "department", "email@mail.com", "123",
+                        "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
+                        "220140", "Belarus");
     }
 }
