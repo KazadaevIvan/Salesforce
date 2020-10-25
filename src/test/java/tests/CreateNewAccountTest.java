@@ -3,6 +3,7 @@ package tests;
 import models.Account;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.RetryAnalyzer;
 
 public class CreateNewAccountTest extends BaseTest {
     Account account;
@@ -20,7 +21,7 @@ public class CreateNewAccountTest extends BaseTest {
                 "Belarus");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void newAccountShouldBeCreated() {
         accountListPage
                 .openPage()
