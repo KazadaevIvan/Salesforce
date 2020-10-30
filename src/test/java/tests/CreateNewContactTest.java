@@ -3,7 +3,8 @@ package tests;
 import models.Contact;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.RetryAnalyzer;
+import tests.base.BaseTest;
+import tests.base.RetryAnalyzer;
 
 public class CreateNewContactTest extends BaseTest {
     Contact contact;
@@ -32,9 +33,6 @@ public class CreateNewContactTest extends BaseTest {
                 .clickSave();
         contactDetailPage
                 .isPageOpened()
-                .validateContact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
-                        "Account", "title", "department", "email@mail.com", "123",
-                        "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
-                        "220140", "Belarus");
+                .validateContact(contact);
     }
 }
