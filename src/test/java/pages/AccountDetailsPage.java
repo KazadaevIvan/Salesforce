@@ -1,5 +1,6 @@
 package pages;
 
+import models.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -31,24 +32,27 @@ public class AccountDetailsPage extends BasePage {
         return this;
     }
 
-    public AccountDetailsPage validateAccount(String accountName, String website, String type, String phone,
-                                              String description, String industry, String employees, String billingStreet,
-                                              String billingCity, String billingState, String billingZip,
-                                              String billingCountry, String shippingStreet, String shippingCity,
-                                              String shippingState, String shippingZip, String shippingCountry) {
+    public AccountDetailsPage validateAccount(Account account) {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
-        assertEquals(getPoleText("Account Name"), accountName, "Account Name should be " + accountName);
-        assertEquals(getPoleText("Website"), website, "Website should be " + accountName);
-        assertEquals(getPoleText("Type"), type, "Type should be " + accountName);
-        assertEquals(getPoleText("Phone"), phone, "Phone should be " + accountName);
-        assertEquals(getPoleText("Description"), description, "Description should be " + accountName);
-        assertEquals(getPoleText("Industry"), industry, "Industry should be " + accountName);
-        assertEquals(getPoleText("Employees"), employees, "Employees should be " + accountName);
-        String billingAddress = addressConstructor(billingStreet, billingCity, billingState, billingZip, billingCountry);
+        assertEquals(getPoleText("Account Name"), account.getAccountName(), "Account Name should be "
+                + account.getAccountName());
+        assertEquals(getPoleText("Website"), account.getWebsite(), "Website should be "
+                + account.getWebsite());
+        assertEquals(getPoleText("Type"), account.getType(), "Type should be " + account.getType());
+        assertEquals(getPoleText("Phone"), account.getPhone(), "Phone should be " + account.getPhone());
+        assertEquals(getPoleText("Description"), account.getDescription(), "Description should be "
+                + account.getDescription());
+        assertEquals(getPoleText("Industry"), account.getIndustry(), "Industry should be "
+                + account.getIndustry());
+        assertEquals(getPoleText("Employees"), account.getEmployees(), "Employees should be "
+                + account.getEmployees());
+        String billingAddress = addressConstructor(account.getBillingStreet(), account.getBillingCity(),
+                account.getBillingState(), account.getBillingZip(), account.getBillingCountry());
         assertEquals(getAddressPoleText("Billing"), billingAddress, "Billing address should be " +
                 billingAddress);
-        String shippingAddress = addressConstructor(shippingStreet, shippingCity, shippingState, shippingZip, shippingCountry);
+        String shippingAddress = addressConstructor(account.getShippingStreet(), account.getShippingCity(),
+                account.getShippingState(), account.getShippingZip(), account.getShippingCountry());
         assertEquals(getAddressPoleText("Shipping"), shippingAddress, "Shipping address should be " +
                 shippingAddress);
         return this;
