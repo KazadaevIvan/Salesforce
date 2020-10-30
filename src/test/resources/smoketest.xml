@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Salesforce Regression Test" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="tests.base.TestListener"/>
+        <listener class-name="tests.base.AnnotationTransformer"/>
+    </listeners>
+
+    <test name="Create New Account">
+        <classes>
+            <class name="tests.CreateNewAccountTest"/>
+        </classes>
+    </test>
+    <test name="Create New Account Contact">
+        <classes>
+            <class name="tests.CreateNewContactTest"/>
+        </classes>
+    </test>
+</suite>
