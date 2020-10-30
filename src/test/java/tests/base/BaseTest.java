@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,14 +13,14 @@ import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    WebDriver driver;
-    LoginPage loginPage;
-    AccountListPage accountListPage;
-    NewAccountModal newAccountModal;
-    AccountDetailsPage accountDetailsPage;
-    ContactListPage contactListPage;
-    NewContactModal newContactModal;
-    ContactDetailPage contactDetailPage;
+    public WebDriver driver;
+    protected LoginPage loginPage;
+    protected AccountListPage accountListPage;
+    protected NewAccountModal newAccountModal;
+    protected AccountDetailsPage accountDetailsPage;
+    protected ContactListPage contactListPage;
+    protected NewContactModal newContactModal;
+    protected ContactDetailPage contactDetailPage;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -46,6 +46,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
