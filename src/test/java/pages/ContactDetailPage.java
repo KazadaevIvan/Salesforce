@@ -1,5 +1,6 @@
 package pages;
 
+import models.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -32,23 +33,24 @@ public class ContactDetailPage extends BasePage {
         return this;
     }
 
-    public ContactDetailPage validateContact(String salutation, String firstName, String middleName, String lastName,
-                                             String suffix, String accountName, String title, String department,
-                                             String email, String fax, String phone, String mobile, String mailingStreet,
-                                             String mailingCity, String mailingState, String mailingZip,
-                                             String mailingCountry) {
+    public ContactDetailPage validateContact(Contact contact) {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
-        assertEquals(getFullName(), fullNameConstructor(salutation, firstName, middleName, lastName, suffix),
-                "Name should be " + fullNameConstructor(salutation, firstName, middleName, lastName, suffix));
-        assertEquals(getAccountName("Account Name"), accountName, "Account Name should be " + accountName);
-        assertEquals(getPoleText("Title"), title, "Title should be " + title);
-        assertEquals(getPoleText("Department"), department, "Department should be " + department);
-        assertEquals(getPoleText("Email"), email, "Email should be " + email);
-        assertEquals(getPoleText("Fax"), fax, "Fax should be " + fax);
-        assertEquals(getPoleText("Phone"), phone, "Phone should be " + phone);
-        assertEquals(getPoleText("Mobile"), mobile, "Mobile should be " + mobile);
-        String mailingAddress = addressConstructor(mailingStreet, mailingCity, mailingState, mailingZip, mailingCountry);
+        assertEquals(getFullName(), fullNameConstructor(contact.getSalutation(), contact.getFirstName(),
+                contact.getMiddleName(), contact.getLastName(), contact.getSuffix()),
+                "Name should be " + fullNameConstructor(contact.getSalutation(), contact.getFirstName(),
+                        contact.getMiddleName(), contact.getLastName(), contact.getSuffix()));
+        assertEquals(getAccountName("Account Name"), contact.getAccountName(), "Account Name should be "
+                + contact.getAccountName());
+        assertEquals(getPoleText("Title"), contact.getTitle(), "Title should be " + contact.getTitle());
+        assertEquals(getPoleText("Department"), contact.getDepartment(), "Department should be "
+                + contact.getDepartment());
+        assertEquals(getPoleText("Email"), contact.getEmail(), "Email should be " + contact.getEmail());
+        assertEquals(getPoleText("Fax"), contact.getFax(), "Fax should be " + contact.getFax());
+        assertEquals(getPoleText("Phone"), contact.getPhone(), "Phone should be " + contact.getPhone());
+        assertEquals(getPoleText("Mobile"), contact.getMobile(), "Mobile should be " + contact.getMobile());
+        String mailingAddress = addressConstructor(contact.getMailingStreet(), contact.getMailingCity(), contact.getMailingState(),
+                contact.getMailingZip(), contact.getMailingCountry());
         assertEquals(getAddressPoleText("Mailing"), mailingAddress, "Shipping address should be " +
                 mailingAddress);
         return this;
