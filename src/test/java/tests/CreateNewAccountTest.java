@@ -3,7 +3,8 @@ package tests;
 import models.Account;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.RetryAnalyzer;
+import tests.base.BaseTest;
+import tests.base.RetryAnalyzer;
 
 public class CreateNewAccountTest extends BaseTest {
     Account account;
@@ -32,10 +33,6 @@ public class CreateNewAccountTest extends BaseTest {
                 .clickSave();
         accountDetailsPage
                 .isPageOpened()
-                .validateAccount("Account", "website", "Analyst", "12345678",
-                        "description", "Banking", "20", "ul. Lenina",
-                        "Minsk", "Minsk", "220140", "Belarus",
-                        "ul. Pushkina", "Minsk", "Minsk", "220018",
-                        "Belarus");
+                .validateAccount(account);
     }
 }
