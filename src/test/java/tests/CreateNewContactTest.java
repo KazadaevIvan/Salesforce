@@ -14,10 +14,25 @@ public class CreateNewContactTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login(LOGIN, PASSWORD);
-        contact = new Contact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
-                "Account", "title", "department", "email@mail.com", "123",
-                "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
-                "220140", "Belarus");
+        contact = Contact.newBuilder()
+                .setSalutation("Mr.")
+                .setFirstName("Ivan")
+                .setMiddleName("Ivanovich")
+                .setLastName("Ivanov")
+                .setSuffix("suffix")
+                .setAccountName("Account")
+                .setTitle("title")
+                .setDepartment("department")
+                .setEmail("email@mail.com")
+                .setFax("123")
+                .setPhone("12345678")
+                .setMobile("12345678")
+                .setMailingStreet("ul. Pushkina")
+                .setMailingCity("Minsk")
+                .setMailingState("Minsk")
+                .setMailingZip("220140")
+                .setMailingCountry("Belarus")
+                .build();
     }
 
     @Test

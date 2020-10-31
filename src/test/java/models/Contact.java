@@ -19,27 +19,11 @@ public class Contact {
     String mailingZip;
     String mailingCountry;
 
-    public Contact(String salutation, String firstName, String middleName, String lastName, String suffix,
-                   String accountName, String title, String department, String email, String fax, String phone,
-                   String mobile, String mailingStreet, String mailingCity, String mailingState, String mailingZip,
-                   String mailingCountry) {
-        this.salutation = salutation;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.suffix = suffix;
-        this.accountName = accountName;
-        this.title = title;
-        this.department = department;
-        this.email = email;
-        this.fax = fax;
-        this.phone = phone;
-        this.mobile = mobile;
-        this.mailingStreet = mailingStreet;
-        this.mailingState = mailingState;
-        this.mailingZip = mailingZip;
-        this.mailingCountry = mailingCountry;
-        this.mailingCity = mailingCity;
+    private Contact() {
+    }
+
+    public static Contact.Builder newBuilder() {
+        return new Contact().new Builder();
     }
 
     public String getSalutation() {
@@ -176,5 +160,101 @@ public class Contact {
 
     public void setMailingCountry(String mailingCountry) {
         this.mailingCountry = mailingCountry;
+    }
+
+    public class Builder {
+
+        private Builder() {
+            // private constructor
+        }
+
+        public Contact.Builder setMailingCountry(String mailingCountry) {
+            Contact.this.mailingCountry = mailingCountry;
+            return this;
+        }
+
+        public Contact.Builder setMailingZip(String mailingZip) {
+            Contact.this.mailingZip = mailingZip;
+            return this;
+        }
+
+        public Contact.Builder setMailingState(String mailingState) {
+            Contact.this.mailingState = mailingState;
+            return this;
+        }
+
+        public Contact.Builder setMailingCity(String mailingCity) {
+            Contact.this.mailingCity = mailingCity;
+            return this;
+        }
+
+        public Contact.Builder setFax(String fax) {
+            Contact.this.fax = fax;
+            return this;
+        }
+
+        public Contact.Builder setDepartment(String department) {
+            Contact.this.department = department;
+            return this;
+        }
+
+        public Contact.Builder setMobile(String mobile) {
+            Contact.this.mobile = mobile;
+            return this;
+        }
+
+        public Contact.Builder setPhone(String phone) {
+            Contact.this.phone = phone;
+            return this;
+        }
+
+        public Contact.Builder setEmail(String email) {
+            Contact.this.email = email;
+            return this;
+        }
+
+        public Contact.Builder setTitle(String title) {
+            Contact.this.title = title;
+            return this;
+        }
+
+        public Contact.Builder setAccountName(String accountName) {
+            Contact.this.accountName = accountName;
+            return this;
+        }
+
+        public Contact.Builder setSuffix(String suffix) {
+            Contact.this.suffix = suffix;
+            return this;
+        }
+
+        public Contact.Builder setLastName(String lastName) {
+            Contact.this.lastName = lastName;
+            return this;
+        }
+
+        public Contact.Builder setMiddleName(String middleName) {
+            Contact.this.middleName = middleName;
+            return this;
+        }
+
+        public Contact.Builder setFirstName(String firstName) {
+            Contact.this.firstName = firstName;
+            return this;
+        }
+
+        public Contact.Builder setMailingStreet(String mailingStreet) {
+            Contact.this.mailingStreet = mailingStreet;
+            return this;
+        }
+
+        public Contact.Builder setSalutation(String salutation) {
+            Contact.this.salutation = salutation;
+            return this;
+        }
+
+        public Contact build() {
+            return Contact.this;
+        }
     }
 }
