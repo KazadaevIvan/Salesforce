@@ -4,6 +4,8 @@ import models.Account;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
+import tests.base.RetryAnalyzer;
+import utils.AllureUtils;
 
 public class CreateNewAccountTest extends BaseTest {
     Account account;
@@ -14,6 +16,7 @@ public class CreateNewAccountTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login(LOGIN, PASSWORD);
+        AllureUtils.takeScreenshot(driver);
         account = Account.newBuilder()
                 .setAccountName("Account")
                 .setWebsite("website")
@@ -35,7 +38,7 @@ public class CreateNewAccountTest extends BaseTest {
                 .build();
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void newAccountShouldBeCreated() {
         accountListPage
                 .openPage()
