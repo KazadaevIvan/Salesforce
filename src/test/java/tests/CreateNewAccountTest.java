@@ -14,7 +14,7 @@ public class CreateNewAccountTest extends BaseTest {
         loginPage
                 .openPage()
                 .isPageOpened()
-                .login("", "");
+                .login(LOGIN, PASSWORD);
         account = new Account("Account", "website", "Analyst", "12345678",
                 "description", "Banking", "20", "ul. Lenina",
                 "Minsk", "Minsk", "220140", "Belarus",

@@ -14,7 +14,7 @@ public class CreateNewContactTest extends BaseTest {
         loginPage
                 .openPage()
                 .isPageOpened()
-                .login("", "");
+                .login(LOGIN, PASSWORD);
         contact = new Contact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
                 "Account", "title", "department", "email@mail.com", "123",
                 "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
