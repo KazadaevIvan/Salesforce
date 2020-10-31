@@ -15,13 +15,13 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage openPage() {
-        driver.get("https://login.salesforce.com/");
+        driver.get("https://wow4.my.salesforce.com/");
         return this;
     }
 
     public LoginPage isPageOpened() {
         try {
-            wait.elementToBeVisible(LOGIN_BUTTON);
+            wait.elementToBeClickable(LOGIN_BUTTON);
         } catch (TimeoutException e) {
             Assert.fail("The page has not been loaded. Button not found by locator " + LOGIN_BUTTON);
         }
