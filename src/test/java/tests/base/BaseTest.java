@@ -24,6 +24,7 @@ public class BaseTest {
     protected ContactListPage contactListPage;
     protected NewContactModal newContactModal;
     protected ContactDetailPage contactDetailPage;
+    protected DeleteContactModal deleteContactModal;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -42,6 +43,7 @@ public class BaseTest {
         contactListPage = new ContactListPage(driver);
         newContactModal = new NewContactModal(driver);
         contactDetailPage = new ContactDetailPage(driver);
+        deleteContactModal = new DeleteContactModal(driver);
     }
 
     @AfterMethod(alwaysRun = true)
