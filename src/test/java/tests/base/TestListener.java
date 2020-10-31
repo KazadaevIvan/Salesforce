@@ -64,7 +64,7 @@ public class TestListener implements ITestListener {
                 return new byte[]{};
             }
         } catch (NoSuchSessionException | IllegalStateException ex) {
-            return null;
+            return new byte[]{};
         }
     }
 
