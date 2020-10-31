@@ -4,7 +4,6 @@ import models.Contact;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
 
 public class CreateNewContactTest extends BaseTest {
     Contact contact;
@@ -21,7 +20,7 @@ public class CreateNewContactTest extends BaseTest {
                 "220140", "Belarus");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test
     public void newContactShouldBeCreated() {
         contactListPage
                 .openPage()
@@ -33,6 +32,9 @@ public class CreateNewContactTest extends BaseTest {
                 .clickSave();
         contactDetailPage
                 .isPageOpened()
-                .validateContact(contact);
+                .validateContact(contact)
+                .deleteContact();
+        deleteContactModal
+                .confirmContactDeletion();
     }
 }
