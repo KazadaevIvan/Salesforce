@@ -8,8 +8,8 @@ import org.testng.Assert;
 public class ContactListPage extends BasePage {
     public final static By ACCOUNT_NAME_COLUMN = By.xpath("//span[contains(text(),'Sort')]/following-sibling::" +
             "span[contains(text(),'Account Name')]");
-    String URL = "https://wow4.lightning.force.com/lightning/o/Contact/list?filterName=Recent";
-    By newButton = By.cssSelector("[title=New]");
+    public final static String URL = "https://wow4.lightning.force.com/lightning/o/Contact/list?filterName=Recent";
+    public final static By NEW_BUTTON = By.xpath("//div[@title='New']");
 
     public ContactListPage(WebDriver driver) {
         super(driver);
@@ -23,16 +23,16 @@ public class ContactListPage extends BasePage {
     @Override
     public ContactListPage isPageOpened() {
         try {
-            wait.elementToBeVisible(ACCOUNT_NAME_COLUMN);
+            wait.elementToBeVisible(NEW_BUTTON);
         } catch (TimeoutException e) {
-            Assert.fail("The page has not been loaded. Table not found by locator " + ACCOUNT_NAME_COLUMN);
+            Assert.fail("The page has not been loaded. Button not found by locator " + NEW_BUTTON);
         }
         return this;
     }
 
     public NewContactModal clickNew() {
-        wait.elementToBeClickable(newButton);
-        driver.findElement(newButton).click();
+        wait.elementToBeClickable(NEW_BUTTON);
+        driver.findElement(NEW_BUTTON).click();
         return new NewContactModal(driver);
     }
 }
