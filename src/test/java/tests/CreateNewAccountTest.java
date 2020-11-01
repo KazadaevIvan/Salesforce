@@ -38,7 +38,7 @@ public class CreateNewAccountTest extends BaseTest {
                 .build();
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test
     public void newAccountShouldBeCreated() {
         accountListPage
                 .openPage()
