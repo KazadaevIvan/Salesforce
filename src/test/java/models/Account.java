@@ -19,27 +19,12 @@ public class Account {
     String shippingZip;
     String shippingCountry;
 
-    public Account(String accountName, String website, String type, String phone, String description, String industry,
-                   String employees, String billingStreet, String billingCity, String billingState, String billingZip,
-                   String billingCountry, String shippingStreet, String shippingCity, String shippingState,
-                   String shippingZip, String shippingCountry) {
-        this.accountName = accountName;
-        this.website = website;
-        this.type = type;
-        this.phone = phone;
-        this.description = description;
-        this.industry = industry;
-        this.employees = employees;
-        this.billingStreet = billingStreet;
-        this.billingCity = billingCity;
-        this.billingState = billingState;
-        this.billingZip = billingZip;
-        this.billingCountry = billingCountry;
-        this.shippingStreet = shippingStreet;
-        this.shippingCity = shippingCity;
-        this.shippingState = shippingState;
-        this.shippingZip = shippingZip;
-        this.shippingCountry = shippingCountry;
+    private Account() {
+        //private constructor
+    }
+
+    public static Builder newBuilder() {
+        return new Account().new Builder();
     }
 
     public String getAccountName() {
@@ -176,5 +161,101 @@ public class Account {
 
     public void setShippingCountry(String shippingCountry) {
         this.shippingCountry = shippingCountry;
+    }
+
+    public class Builder {
+
+        private Builder() {
+            // private constructor
+        }
+
+        public Builder setShippingStreet(String shippingStreet) {
+            Account.this.shippingStreet = shippingStreet;
+            return this;
+        }
+
+        public Builder setIndustry(String industry) {
+            Account.this.industry = industry;
+            return this;
+        }
+
+        public Builder setShippingCountry(String shippingCountry) {
+            Account.this.shippingCountry = shippingCountry;
+            return this;
+        }
+
+        public Builder setShippingZip(String shippingZip) {
+            Account.this.shippingZip = shippingZip;
+            return this;
+        }
+
+        public Builder setShippingState(String shippingState) {
+            Account.this.shippingState = shippingState;
+            return this;
+        }
+
+        public Builder setShippingCity(String shippingCity) {
+            Account.this.shippingCity = shippingCity;
+            return this;
+        }
+
+        public Builder setBillingCountry(String billingCountry) {
+            Account.this.billingCountry = billingCountry;
+            return this;
+        }
+
+        public Builder setBillingZip(String billingZip) {
+            Account.this.billingZip = billingZip;
+            return this;
+        }
+
+        public Builder setBillingState(String billingState) {
+            Account.this.billingState = billingState;
+            return this;
+        }
+
+        public Builder setBillingCity(String billingCity) {
+            Account.this.billingCity = billingCity;
+            return this;
+        }
+
+        public Builder setEmployees(String employees) {
+            Account.this.employees = employees;
+            return this;
+        }
+
+        public Builder setPhone(String phone) {
+            Account.this.phone = phone;
+            return this;
+        }
+
+        public Builder setAccountName(String accountName) {
+            Account.this.accountName = accountName;
+            return this;
+        }
+
+        public Builder setWebsite(String website) {
+            Account.this.website = website;
+            return this;
+        }
+
+        public Builder setType(String type) {
+            Account.this.type = type;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            Account.this.description = description;
+            return this;
+        }
+
+        public Builder setBillingStreet(String billingStreet) {
+            Account.this.billingStreet = billingStreet;
+            return this;
+        }
+
+        public Account build() {
+            return Account.this;
+        }
     }
 }

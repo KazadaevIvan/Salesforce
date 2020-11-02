@@ -13,6 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactDetailPage extends BasePage {
     public final static By DETAILS = By.xpath("(//*[@title='Details'])[1]/a");
+    public final static By DELETE_BUTTON = By.xpath("//*[@name='Delete']");
     public final static String detailLocator = "//*[contains(text(),'%s')]/ancestor::div/" +
             "div[@class='slds-form-element__control']/descendant::*";
     public final static String baseInfo = "[@data-output-element-id='output-field']";
@@ -86,5 +87,11 @@ public class ContactDetailPage extends BasePage {
 
     public String getAccountName(String poleName) {
         return driver.findElement(By.xpath(String.format(detailLocator + baseInfo + accountName, poleName))).getText();
+    }
+
+    public DeleteContactModal deleteContact() {
+        wait.elementToBeClickable(DELETE_BUTTON);
+        driver.findElement(DELETE_BUTTON).click();
+        return new DeleteContactModal(driver);
     }
 }

@@ -4,7 +4,6 @@ import models.Contact;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
 
 public class CreateNewContactTest extends BaseTest {
     Contact contact;
@@ -14,14 +13,29 @@ public class CreateNewContactTest extends BaseTest {
         loginPage
                 .openPage()
                 .isPageOpened()
-                .login("", "");
-        contact = new Contact("Mr.", "Ivan", "Ivanovich", "Ivanov", "suffix",
-                "Account", "title", "department", "email@mail.com", "123",
-                "12345678", "12345678", "ul. Pushkina", "Minsk", "Minsk",
-                "220140", "Belarus");
+                .login(LOGIN, PASSWORD);
+        contact = Contact.newBuilder()
+                .setSalutation("Mr.")
+                .setFirstName("Ivan")
+                .setMiddleName("Ivanovich")
+                .setLastName("Ivanov")
+                .setSuffix("suffix")
+                .setAccountName("Account")
+                .setTitle("title")
+                .setDepartment("department")
+                .setEmail("email@mail.com")
+                .setFax("123")
+                .setPhone("12345678")
+                .setMobile("12345678")
+                .setMailingStreet("ul. Pushkina")
+                .setMailingCity("Minsk")
+                .setMailingState("Minsk")
+                .setMailingZip("220140")
+                .setMailingCountry("Belarus")
+                .build();
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test
     public void newContactShouldBeCreated() {
         contactListPage
                 .openPage()
@@ -33,6 +47,9 @@ public class CreateNewContactTest extends BaseTest {
                 .clickSave();
         contactDetailPage
                 .isPageOpened()
-                .validateContact(contact);
+                .validateContact(contact)
+                .deleteContact();
+        deleteContactModal
+                .confirmContactDeletion();
     }
 }
