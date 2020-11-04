@@ -66,6 +66,10 @@ public class Contact {
         this.suffix = suffix;
     }
 
+    public String fullNameConstructor() {
+        return getSalutation() + " " + getFirstName() + " " + getMiddleName() + " " + getLastName() + " " + getSuffix();
+    }
+
     public String getAccountName() {
         return accountName;
     }
@@ -160,6 +164,11 @@ public class Contact {
 
     public void setMailingCountry(String mailingCountry) {
         this.mailingCountry = mailingCountry;
+    }
+
+    public String addressConstructor() {
+        return getMailingStreet() + "\n" + getMailingCity() + ", " + getMailingState() +
+                " " + getMailingZip() + "\n" + getMailingCountry() + "\n";
     }
 
     public class Builder {
