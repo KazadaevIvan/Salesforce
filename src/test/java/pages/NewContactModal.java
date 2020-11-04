@@ -49,9 +49,9 @@ public class NewContactModal extends BasePage {
         return this;
     }
 
-    public ContactListPage clickSave() {
+    public ContactDetailsPage clickSave() {
         wait.elementToBeClickable(SAVE_BUTTON);
         driver.findElement(SAVE_BUTTON).click();
-        return new ContactListPage(driver);
+        return new ContactDetailsPage(driver);
     }
 }

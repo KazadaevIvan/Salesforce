@@ -50,9 +50,9 @@ public class NewAccountModal extends BasePage {
         return this;
     }
 
-    public AccountListPage clickSave() {
+    public AccountDetailsPage clickSave() {
         wait.elementToBeClickable(SAVE_BUTTON);
         driver.findElement(SAVE_BUTTON).click();
-        return new AccountListPage(driver);
+        return new AccountDetailsPage(driver);
     }
 }

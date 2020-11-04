@@ -1,6 +1,7 @@
 package tests;
 
 import models.Contact;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -8,11 +9,9 @@ import tests.base.BaseTest;
 public class CreateNewContactTest extends BaseTest {
     Contact contact;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Login")
     public void login() {
-        loginPage
-                .openPage()
-                .isPageOpened()
+        loginPageSteps
                 .login(LOGIN, PASSWORD);
         contact = Contact.newBuilder()
                 .setSalutation("Mr.")
@@ -35,21 +34,17 @@ public class CreateNewContactTest extends BaseTest {
                 .build();
     }
 
-    @Test
+    @Test(description = "Verify that user could create new contact")
     public void newContactShouldBeCreated() {
-        contactListPage
-                .openPage()
-                .isPageOpened()
-                .clickNew();
-        newContactModal
-                .isPageOpened()
-                .create(contact)
-                .clickSave();
-        contactDetailPage
-                .isPageOpened()
-                .validateContact(contact)
-                .deleteContact();
-        deleteContactModal
-                .confirmContactDeletion();
+        contactListPageSteps
+                .createNewContact(contact);
+        contactDetailsPageSteps
+                .validateContact(contact);
+    }
+
+    @AfterMethod(description = "Delete contact")
+    public void deleteContact() {
+        contactListPageSteps
+                .deleteContact(contact.getFirstName());
     }
 }

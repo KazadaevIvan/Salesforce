@@ -1,24 +1,20 @@
 package tests;
 
 import models.Account;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
-import utils.AllureUtils;
 
 public class CreateNewAccountTest extends BaseTest {
     Account account;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Login")
     public void login() {
-        loginPage
-                .openPage()
-                .isPageOpened()
+        loginPageSteps
                 .login(LOGIN, PASSWORD);
-        AllureUtils.takeScreenshot(driver);
         account = Account.newBuilder()
-                .setAccountName("Account")
+                .setAccountName("Account for testing")
                 .setWebsite("website")
                 .setType("Analyst")
                 .setDescription("description")
@@ -38,18 +34,17 @@ public class CreateNewAccountTest extends BaseTest {
                 .build();
     }
 
-    @Test
+    @Test(description = "Verify that user could create new account")
     public void newAccountShouldBeCreated() {
-        accountListPage
-                .openPage()
-                .isPageOpened()
-                .clickNew();
-        newAccountModal
-                .isPageOpened()
-                .create(account)
-                .clickSave();
-        accountDetailsPage
-                .isPageOpened()
+        accountListPageSteps
+                .createNewAccount(account);
+        accountDetailsPageSteps
                 .validateAccount(account);
+    }
+
+    @AfterMethod(description = "Delete account")
+    public void deleteAccount() {
+        accountListPageSteps
+                .deleteAccount(account.getAccountName());
     }
 }
