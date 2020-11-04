@@ -123,6 +123,11 @@ public class Account {
         this.billingCountry = billingCountry;
     }
 
+    public String billingAddressConstructor() {
+        return getBillingStreet() + "\n" + getBillingCity() + ", " + getBillingState() +
+                " " + getBillingZip() + "\n" + getBillingCountry() + "\n";
+    }
+
     public String getShippingStreet() {
         return shippingStreet;
     }
@@ -161,6 +166,11 @@ public class Account {
 
     public void setShippingCountry(String shippingCountry) {
         this.shippingCountry = shippingCountry;
+    }
+
+    public String shippingAddressConstructor() {
+        return getShippingStreet() + "\n" + getShippingCity() + ", " + getShippingState() +
+                " " + getShippingZip() + "\n" + getShippingCountry() + "\n";
     }
 
     public class Builder {
