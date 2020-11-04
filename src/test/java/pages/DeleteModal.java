@@ -5,15 +5,15 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class DeleteContactModal extends BasePage {
+public class DeleteModal extends BasePage {
     public static final By DELETE_BUTTON = By.xpath("//span[contains(text(),'Delete')]");
 
-    public DeleteContactModal(WebDriver driver) {
+    public DeleteModal(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public DeleteContactModal isPageOpened() {
+    public DeleteModal isPageOpened() {
         try {
             wait.elementToBeClickable(DELETE_BUTTON);
         } catch (TimeoutException e) {
@@ -21,8 +21,8 @@ public class DeleteContactModal extends BasePage {
         }
         return this;
     }
-    public void confirmContactDeletion() {
+
+    public void confirmDeletion() {
         driver.findElement(DELETE_BUTTON).click();
-        wait.elementToBeVisible(By.cssSelector(".toastIcon"));
     }
 }
