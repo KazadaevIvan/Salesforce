@@ -13,6 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class AccountDetailsPage extends BasePage {
     public final static By DETAILS = By.xpath("(//*[@title='Details'])[1]/a");
+    public final static By DELETE_BUTTON = By.xpath("//*[@name='Delete']");
     public final static String detailLocator = "//*[contains(text(),'%s')]/ancestor::div/" +
             "div[@class='slds-form-element__control']/descendant::*";
     public final static String baseInfo = "[@data-output-element-id='output-field']";
@@ -32,29 +33,9 @@ public class AccountDetailsPage extends BasePage {
         return this;
     }
 
-    public AccountDetailsPage validateAccount(Account account) {
+    public AccountDetailsPage openAccountDetails(Account account) {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
-        assertEquals(getPoleText("Account Name"), account.getAccountName(), "Account Name should be "
-                + account.getAccountName());
-        assertEquals(getPoleText("Website"), account.getWebsite(), "Website should be "
-                + account.getWebsite());
-        assertEquals(getPoleText("Type"), account.getType(), "Type should be " + account.getType());
-        assertEquals(getPoleText("Phone"), account.getPhone(), "Phone should be " + account.getPhone());
-        assertEquals(getPoleText("Description"), account.getDescription(), "Description should be "
-                + account.getDescription());
-        assertEquals(getPoleText("Industry"), account.getIndustry(), "Industry should be "
-                + account.getIndustry());
-        assertEquals(getPoleText("Employees"), account.getEmployees(), "Employees should be "
-                + account.getEmployees());
-        String billingAddress = addressConstructor(account.getBillingStreet(), account.getBillingCity(),
-                account.getBillingState(), account.getBillingZip(), account.getBillingCountry());
-        assertEquals(getAddressPoleText("Billing"), billingAddress, "Billing address should be " +
-                billingAddress);
-        String shippingAddress = addressConstructor(account.getShippingStreet(), account.getShippingCity(),
-                account.getShippingState(), account.getShippingZip(), account.getShippingCountry());
-        assertEquals(getAddressPoleText("Shipping"), shippingAddress, "Shipping address should be " +
-                shippingAddress);
         return this;
     }
 
@@ -71,9 +52,9 @@ public class AccountDetailsPage extends BasePage {
         return String.valueOf(address);
     }
 
-    public String addressConstructor(String street, String city, String state,
-                                     String zip, String country) {
-        return street + "\n" + city + ", " + state +
-                " " + zip + "\n" + country + "\n";
+    public DeleteModal deleteAccount() {
+        wait.elementToBeClickable(DELETE_BUTTON);
+        driver.findElement(DELETE_BUTTON).click();
+        return new DeleteModal(driver);
     }
 }
