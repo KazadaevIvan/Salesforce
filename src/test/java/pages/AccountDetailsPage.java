@@ -9,8 +9,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-
 public class AccountDetailsPage extends BasePage {
     public final static By DETAILS = By.xpath("(//*[@title='Details'])[1]/a");
     public final static By DELETE_BUTTON = By.xpath("//*[@name='Delete']");
