@@ -34,7 +34,7 @@ public class AccountDetailsPage extends BasePage {
     }
 
     @Step("Open Account Details page")
-    public AccountDetailsPage openAccountDetails(Account account) {
+    public AccountDetailsPage openAccountDetails() {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
         return this;

@@ -21,7 +21,7 @@ public class AccountListPageSteps {
                 .isPageOpened()
                 .create(account)
                 .clickSave()
-                .openAccountDetails(account);
+                .openAccountDetails();
         return this;
     }
 
