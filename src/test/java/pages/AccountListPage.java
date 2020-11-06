@@ -53,7 +53,7 @@ public class AccountListPage extends BasePage {
         return list.size();
     }
 
-    @Step("Open account '{name}'")
+    @Step("Open account '{name}' details")
     public AccountDetailsPage openAccount(String name) {
         wait.elementToBeClickable(By.xpath(String.format(ACCOUNT, name)));
         driver.findElement(By.xpath(String.format(ACCOUNT, name))).click();
