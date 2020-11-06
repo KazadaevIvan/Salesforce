@@ -40,7 +40,7 @@ public class ContactListPageSteps {
         contactListPage
                 .openPage()
                 .isPageOpened()
-                .numberOfContactsAfterDeletionShouldBeLessThan(initialNumberOfContacts);
+                .verifyNumberOfContactsAfterDeletion(initialNumberOfContacts);
         return this;
     }
 }

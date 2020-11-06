@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -21,6 +22,7 @@ public class AccountDetailsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Account Details page is opened")
     @Override
     public AccountDetailsPage isPageOpened() {
         try {
@@ -31,7 +33,8 @@ public class AccountDetailsPage extends BasePage {
         return this;
     }
 
-    public AccountDetailsPage openAccountDetails(Account account) {
+    @Step("Open Account Details page")
+    public AccountDetailsPage openAccountDetails() {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
         return this;
@@ -50,6 +53,7 @@ public class AccountDetailsPage extends BasePage {
         return String.valueOf(address);
     }
 
+    @Step("Click Delete button")
     public DeleteModal deleteAccount() {
         wait.elementToBeClickable(DELETE_BUTTON);
         driver.findElement(DELETE_BUTTON).click();

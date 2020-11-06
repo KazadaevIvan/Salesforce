@@ -21,7 +21,7 @@ public class AccountListPageSteps {
                 .isPageOpened()
                 .create(account)
                 .clickSave()
-                .openAccountDetails(account);
+                .openAccountDetails();
         return this;
     }
 
@@ -40,7 +40,7 @@ public class AccountListPageSteps {
         accountListPage
                 .openPage()
                 .isPageOpened()
-                .numberOfAccountsAfterDeletionShouldBeLessThan(initialNumberOfAccounts);
+                .verifyNumberOfAccountsAfterDeletion(initialNumberOfAccounts);
         return this;
     }
 }

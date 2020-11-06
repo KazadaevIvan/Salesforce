@@ -11,7 +11,7 @@
             <class name="tests.CreateNewAccountTest"/>
         </classes>
     </test>
-    <test name="Create New Account Contact">
+    <test name="Create New Contact">
         <classes>
             <class name="tests.CreateNewContactTest"/>
         </classes>
