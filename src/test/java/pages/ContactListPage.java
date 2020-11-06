@@ -60,7 +60,7 @@ public class ContactListPage extends BasePage {
         return new ContactDetailsPage(driver);
     }
 
-    @Step("Verify account is deleted. Number of account should be less than '{numberOfAccounts}'")
+    @Step("Verify contact is deleted. Number of contacts should be less than '{numberOfContacts}'")
     public ContactListPage verifyNumberOfContactsAfterDeletion(int numberOfContacts) {
         assertEquals(getNumberOfContacts(), (numberOfContacts-1));
         return this;
