@@ -62,7 +62,7 @@ public class AccountListPage extends BasePage {
         return new AccountDetailsPage(driver);
     }
 
-    @Step("Verify account is deleted. Number of account should be less than '{numberOfAccounts}'")
+    @Step("Verify account is deleted. Number of accounts should be less than '{numberOfAccounts}'")
     public AccountListPage verifyNumberOfAccountsAfterDeletion(int numberOfAccounts) {
         assertEquals(getNumberOfAccounts(), (numberOfAccounts-1));
         return this;
