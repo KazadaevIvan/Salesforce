@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ public class DeleteModal extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Delete Modal is opened")
     @Override
     public DeleteModal isPageOpened() {
         try {
@@ -22,6 +24,7 @@ public class DeleteModal extends BasePage {
         return this;
     }
 
+    @Step("Confirm deletion")
     public void confirmDeletion() {
         driver.findElement(DELETE_BUTTON).click();
     }
