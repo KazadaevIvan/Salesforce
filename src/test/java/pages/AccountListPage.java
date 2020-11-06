@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class AccountListPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Account List page is opened")
     @Override
     public AccountListPage isPageOpened() {
         try {
@@ -31,11 +33,13 @@ public class AccountListPage extends BasePage {
         return this;
     }
 
+    @Step("Open Account List page")
     public AccountListPage openPage() {
         driver.get(URL);
         return this;
     }
 
+    @Step("Click New button")
     public NewAccountModal clickNew() {
         wait.elementToBeClickable(NEW_BUTTON);
         driver.findElement(NEW_BUTTON).click();
@@ -48,6 +52,7 @@ public class AccountListPage extends BasePage {
         return list.size();
     }
 
+    @Step("Open account '{name}'")
     public AccountDetailsPage openAccount(String name) {
         wait.elementToBeClickable(By.xpath(String.format(ACCOUNT, name)));
         driver.findElement(By.xpath(String.format(ACCOUNT, name))).click();
