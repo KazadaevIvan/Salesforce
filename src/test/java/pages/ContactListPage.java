@@ -53,7 +53,7 @@ public class ContactListPage extends BasePage {
         return list.size();
     }
 
-    @Step("Open contact '{name}'")
+    @Step("Open contact '{name}' details")
     public ContactDetailsPage openContact(String name) {
         wait.elementToBeClickable(By.xpath(String.format(CONTACT, name)));
         driver.findElement(By.xpath(String.format(CONTACT, name))).click();
