@@ -31,7 +31,7 @@ public class NewAccountModal extends BasePage {
         return this;
     }
 
-    @Step("Create new account")
+    @Step("Fill in the inputs")
     public NewAccountModal create(Account account) {
         new InputWithSearch(driver, "Account Name").write(account.getAccountName());
         new DropDown(driver, "Type").selectOption(account.getType());
