@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class ContactDetailsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Verify Contact Details page is opened")
     @Override
     public ContactDetailsPage isPageOpened() {
         try {
@@ -31,6 +33,7 @@ public class ContactDetailsPage extends BasePage {
         return this;
     }
 
+    @Step("Open Contact Details page")
     public ContactDetailsPage openContactDetails() {
         wait.elementToBeClickable(DETAILS);
         driver.findElement(DETAILS).click();
@@ -58,6 +61,7 @@ public class ContactDetailsPage extends BasePage {
         return driver.findElement(By.xpath(String.format(detailLocator + baseInfo + accountName, poleName))).getText();
     }
 
+    @Step("Click Delete button")
     public DeleteModal deleteContact() {
         wait.elementToBeClickable(DELETE_BUTTON);
         driver.findElement(DELETE_BUTTON).click();

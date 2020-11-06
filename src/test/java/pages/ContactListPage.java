@@ -1,14 +1,15 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 
 public class ContactListPage extends BasePage {
     public final static By ACCOUNT_NAME_COLUMN = By.xpath("//span[@title='Account Name']");
@@ -21,11 +22,13 @@ public class ContactListPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open Contact List page")
     public ContactListPage openPage() {
         driver.get(URL);
         return this;
     }
 
+    @Step("Verify Contact List page is opened")
     @Override
     public ContactListPage isPageOpened() {
         try {
@@ -36,27 +39,30 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
+    @Step("Click New button")
     public NewContactModal clickNew() {
         wait.elementToBeClickable(NEW_BUTTON);
         driver.findElement(NEW_BUTTON).click();
         return new NewContactModal(driver);
     }
 
+    @Step("Get number of contacts")
     public int getNumberOfContacts() {
         wait.elementToBeVisible(ALL_CONTACTS);
         List<WebElement> list = driver.findElements(ALL_CONTACTS);
         return list.size();
     }
 
+    @Step("Open contact '{name}'")
     public ContactDetailsPage openContact(String name) {
         wait.elementToBeClickable(By.xpath(String.format(CONTACT, name)));
         driver.findElement(By.xpath(String.format(CONTACT, name))).click();
         return new ContactDetailsPage(driver);
     }
 
-    public ContactListPage numberOfContactsAfterDeletionShouldBeLessThan(int numberOfContacts) {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.numberOfElementsToBeLessThan(ALL_CONTACTS, numberOfContacts));
+    @Step("Verify account is deleted. Number of account should be less than '{numberOfAccounts}'")
+    public ContactListPage verifyNumberOfContactsAfterDeletion(int numberOfContacts) {
+        assertEquals(getNumberOfContacts(), (numberOfContacts-1));
         return this;
     }
 }

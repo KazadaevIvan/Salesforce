@@ -4,6 +4,7 @@ import elements.DropDown;
 import elements.Input;
 import elements.InputWithSearch;
 import elements.TextArea;
+import io.qameta.allure.Step;
 import models.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -18,6 +19,7 @@ public class NewContactModal extends BasePage {
         super(driver);
     }
 
+    @Step("Verify New Contact modal is opened")
     @Override
     public NewContactModal isPageOpened() {
         try {
@@ -28,6 +30,7 @@ public class NewContactModal extends BasePage {
         return this;
     }
 
+    @Step("Fill in the inputs")
     public NewContactModal create(Contact contact) {
         new DropDown(driver, "Salutation").selectOption(contact.getSalutation());
         new Input(driver, "First Name").write(contact.getFirstName());
@@ -49,6 +52,7 @@ public class NewContactModal extends BasePage {
         return this;
     }
 
+    @Step("Click Save button")
     public ContactDetailsPage clickSave() {
         wait.elementToBeClickable(SAVE_BUTTON);
         driver.findElement(SAVE_BUTTON).click();
