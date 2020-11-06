@@ -4,6 +4,7 @@ import elements.DropDown;
 import elements.Input;
 import elements.InputWithSearch;
 import elements.TextArea;
+import io.qameta.allure.Step;
 import models.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -19,6 +20,7 @@ public class NewAccountModal extends BasePage {
         super(driver);
     }
 
+    @Step("Verify New Account modal is opened")
     @Override
     public NewAccountModal isPageOpened() {
         try {
@@ -29,6 +31,7 @@ public class NewAccountModal extends BasePage {
         return this;
     }
 
+    @Step("Create new account")
     public NewAccountModal create(Account account) {
         new InputWithSearch(driver, "Account Name").write(account.getAccountName());
         new DropDown(driver, "Type").selectOption(account.getType());
@@ -50,6 +53,7 @@ public class NewAccountModal extends BasePage {
         return this;
     }
 
+    @Step("Click Save button")
     public AccountDetailsPage clickSave() {
         wait.elementToBeClickable(SAVE_BUTTON);
         driver.findElement(SAVE_BUTTON).click();
