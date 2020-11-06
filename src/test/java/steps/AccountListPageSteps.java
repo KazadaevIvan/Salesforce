@@ -40,7 +40,7 @@ public class AccountListPageSteps {
         accountListPage
                 .openPage()
                 .isPageOpened()
-                .numberOfAccountsAfterDeletionShouldBeLessThan(initialNumberOfAccounts);
+                .verifyNumberOfAccountsAfterDeletion(initialNumberOfAccounts);
         return this;
     }
 }

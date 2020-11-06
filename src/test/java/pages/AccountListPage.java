@@ -11,6 +11,8 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
+
 public class AccountListPage extends BasePage {
     public final static By ACCOUNT_NAME_COLUMN = By.xpath("//span[@title='Account Name']");
     public final static String URL = "https://wow4.lightning.force.com/lightning/o/Account/list?filterName=Recent";
@@ -46,6 +48,7 @@ public class AccountListPage extends BasePage {
         return new NewAccountModal(driver);
     }
 
+    @Step("Get number of accounts")
     public int getNumberOfAccounts() {
         wait.elementToBeVisible(ALL_ACCOUNTS);
         List<WebElement> list = driver.findElements(ALL_ACCOUNTS);
@@ -59,9 +62,9 @@ public class AccountListPage extends BasePage {
         return new AccountDetailsPage(driver);
     }
 
-    public AccountListPage numberOfAccountsAfterDeletionShouldBeLessThan(int numberOfAccounts) {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.numberOfElementsToBeLessThan(ALL_ACCOUNTS, numberOfAccounts));
+    @Step("Verify account is deleted. Number of account should be less than '{numberOfAccounts}'")
+    public AccountListPage verifyNumberOfAccountsAfterDeletion(int numberOfAccounts) {
+        assertEquals(getNumberOfAccounts(), (numberOfAccounts-1));
         return this;
     }
 }
